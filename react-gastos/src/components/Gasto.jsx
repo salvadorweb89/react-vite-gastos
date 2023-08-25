@@ -1,4 +1,13 @@
 import PropTypes from 'prop-types';
+
+import {
+  LeadingActions,
+  SwipeableList,
+  SwipeableListItem,
+  SwipeAction,
+  TrailingActions
+} from 'react-swipeable-list';
+
 import { formatDate } from '../helpers';
 
 import IconoComida from '../img/icono_comida.svg';
@@ -19,18 +28,44 @@ const Gasto = ({ gasto }) => {
 
   const {nombre, importe, categoria, fecha, id} = gasto;
 
+  const leadingActions = () => (
+    <LeadingActions>
+      <SwipeAction onClick={() => console.log('editar')}>
+        Editar
+      </SwipeAction>
+    </LeadingActions>
+  );
+  
+  const trailingActions = () => (
+    <TrailingActions>
+      <SwipeAction
+        destructive={true}
+        onClick={() => console.log('eliminar')}
+      >
+        Eliminar
+      </SwipeAction>
+    </TrailingActions>
+  );
+
   return (
-    <div className='gasto sombra'>
-      <div className='contenido-gasto'>
-        <img src={diccionarioIconos[categoria]} />
-        <div className='descripcion-gasto'>
-          <p className='categoria'>{categoria}</p>
-          <p className='nombre-gasto'>{nombre}</p>
-          <p className='fecha-gasto'>Agregado el: <span>{formatDate(fecha)}</span></p>
+    <SwipeableList>
+      <SwipeableListItem
+        leadingActions={leadingActions()}
+        trailingActions={trailingActions()}
+      >
+        <div className='gasto sombra'>
+        <div className='contenido-gasto'>
+          <img src={diccionarioIconos[categoria]} alt={`Ìcono gasto tipo ${categoria}`} />
+          <div className='descripcion-gasto'>
+            <p className='categoria'>{categoria}</p>
+            <p className='nombre-gasto'>{nombre}</p>
+            <p className='fecha-gasto'>Agregado el: <span>{formatDate(fecha)}</span></p>
+          </div>
         </div>
+        <div className='cantidad-gasto'>{importe}€</div>
       </div>
-      <div className='cantidad-gasto'>{importe}€</div>
-    </div>
+      </SwipeableListItem>
+    </SwipeableList>
   );
 }
 
