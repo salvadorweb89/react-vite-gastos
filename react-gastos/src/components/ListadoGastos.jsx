@@ -4,14 +4,15 @@ import 'react-swipeable-list/dist/styles.css';
 
 import Gasto from './Gasto';
 
-const ListadoGastos = ({ gastos }) => {
+const ListadoGastos = ({ gastos, setGastoEditar }) => {
   return (
     <div className='contenedor listado-gastos'>
       <h2>{gastos.length ? 'Listado de gastos' : 'Aún no hay gastos registrados'}</h2>
         {gastos.map(gasto => (
           <Gasto 
-            gasto={gasto}
             key={gasto.id}
+            gasto={gasto}
+            setGastoEditar={setGastoEditar}
           />
         ))}
     </div>
@@ -19,7 +20,8 @@ const ListadoGastos = ({ gastos }) => {
 }
 
 ListadoGastos.propTypes = {
-  gastos: PropTypes.array.isRequired
+  gastos: PropTypes.array.isRequired,
+  setGastoEditar: PropTypes.func.isRequired
 }
 
 export default ListadoGastos;

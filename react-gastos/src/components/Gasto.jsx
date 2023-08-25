@@ -24,13 +24,13 @@ const diccionarioIconos = {
   suscripciones: IconoSuscripciones,
 }
 
-const Gasto = ({ gasto }) => {
+const Gasto = ({ gasto, setGastoEditar }) => {
 
   const {nombre, importe, categoria, fecha, id} = gasto;
 
   const leadingActions = () => (
     <LeadingActions>
-      <SwipeAction onClick={() => console.log('editar')}>
+      <SwipeAction onClick={() => setGastoEditar(gasto)}>
         Editar
       </SwipeAction>
     </LeadingActions>
@@ -70,7 +70,9 @@ const Gasto = ({ gasto }) => {
 }
 
 Gasto.propTypes = {
-  gasto: PropTypes.object.isRequired
+  gasto: PropTypes.object.isRequired,
+  setGastoEditar: PropTypes.func.isRequired
+
 }
 
 export default Gasto;

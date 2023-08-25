@@ -1,13 +1,32 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types';
 import Mensaje from './Mensaje';
 import IconoCerrarModal from '../img/cerrar.svg';
 
-const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto}) => {
+const Modal = ({
+    setModal, 
+    animarModal, 
+    setAnimarModal, 
+    guardarGasto, 
+    gastoEditar
+  }) => {
+
   const [mensajeForm, setMensajeForm] = useState('');
   const [nombre, setNombre] = useState('');
   const [importe, setImporte] = useState(0);
   const [categoria, setCategoria] = useState('');
+  const [fecha, setFecha] = useState('');
+  const [idGasto, setIdGasto] = useState('');
+
+  useEffect(() => {
+    if(Object.keys(gastoEditar).length > 0) {
+      setNombre(gastoEditar.nombre);
+      setImporte(gastoEditar.importe);
+      setCategoria(gastoEditar.categoria);
+      setFecha(gastoEditar.fecha);
+      setIdGasto(gastoEditar.id);
+    }
+  }, [])
 
   const cerrarModal = () => {
     setAnimarModal(false);
@@ -30,7 +49,7 @@ const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto}) => {
       return;
     }
     
-    guardarGasto({nombre, importe, categoria});
+    guardarGasto({nombre, importe, categoria, fecha, idGasto});
     
   }
 
@@ -41,7 +60,7 @@ const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto}) => {
       title="Pulsa para cerrar el modal de nuevo gasto" onClick={cerrarModal} />
       </div>
       <form className={`formulario ${animarModal ? 'animar' : 'cerrar'}`} onSubmit={ handleSubmit }>
-        <legend>Nuevo Gasto</legend>
+        <legend>{gastoEditar.nombre ? 'Editar' : 'Nuevo'} Gasto</legend>
 
         {mensajeForm && <Mensaje tipo="error" >{mensajeForm}</Mensaje>}
 
@@ -66,7 +85,7 @@ const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto}) => {
             <option value="suscripciones">Suscripciones</option>
           </select>
           
-          <input type="submit" value="Añadir gasto" />
+          <input type="submit" value={gastoEditar.nombre ? 'Guardar Cambios' : 'Añadir Gasto'} />
         </div>
       </form>
     </div>
@@ -77,7 +96,8 @@ Modal.propTypes = {
   setModal: PropTypes.func.isRequired,
   animarModal: PropTypes.bool.isRequired,
   setAnimarModal: PropTypes.func.isRequired,
-  guardarGasto: PropTypes.func.isRequired
+  guardarGasto: PropTypes.func.isRequired,
+  gastoEditar: PropTypes.object
 
 }
 
