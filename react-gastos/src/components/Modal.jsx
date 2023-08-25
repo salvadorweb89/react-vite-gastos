@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Mensaje from './Mensaje';
 import IconoCerrarModal from '../img/cerrar.svg';
 
-const Modal = ({setModal, animarModal, setAnimarModal}) => {
+const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto}) => {
   const [mensajeForm, setMensajeForm] = useState('');
   const [nombre, setNombre] = useState('');
   const [importe, setImporte] = useState(0);
@@ -26,7 +26,12 @@ const Modal = ({setModal, animarModal, setAnimarModal}) => {
       setTimeout(() => {
         setMensajeForm('');
       }, 4000);
+
+      return;
     }
+    
+    guardarGasto({nombre, importe, categoria});
+    
   }
 
   return (
@@ -72,6 +77,7 @@ Modal.propTypes = {
   setModal: PropTypes.func.isRequired,
   animarModal: PropTypes.bool.isRequired,
   setAnimarModal: PropTypes.func.isRequired,
+  guardarGasto: PropTypes.func.isRequired
 
 }
 
