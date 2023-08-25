@@ -8,7 +8,8 @@ const Modal = ({
     animarModal, 
     setAnimarModal, 
     guardarGasto, 
-    gastoEditar
+    gastoEditar,
+    setGastoEditar
   }) => {
 
   const [mensajeForm, setMensajeForm] = useState('');
@@ -30,7 +31,7 @@ const Modal = ({
 
   const cerrarModal = () => {
     setAnimarModal(false);
-
+    setGastoEditar({});
     setTimeout(() => {
       setModal(false);
     }, 500);
@@ -97,7 +98,8 @@ Modal.propTypes = {
   animarModal: PropTypes.bool.isRequired,
   setAnimarModal: PropTypes.func.isRequired,
   guardarGasto: PropTypes.func.isRequired,
-  gastoEditar: PropTypes.object
+  gastoEditar: PropTypes.object,
+  setGastoEditar: PropTypes.func.isRequired,
 
 }
 

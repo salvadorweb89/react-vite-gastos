@@ -24,7 +24,7 @@ const diccionarioIconos = {
   suscripciones: IconoSuscripciones,
 }
 
-const Gasto = ({ gasto, setGastoEditar }) => {
+const Gasto = ({ gasto, setGastoEditar, eliminarGasto }) => {
 
   const {nombre, importe, categoria, fecha, id} = gasto;
 
@@ -40,7 +40,7 @@ const Gasto = ({ gasto, setGastoEditar }) => {
     <TrailingActions>
       <SwipeAction
         destructive={true}
-        onClick={() => console.log('eliminar')}
+        onClick={() => eliminarGasto(id)}
       >
         Eliminar
       </SwipeAction>
@@ -71,7 +71,8 @@ const Gasto = ({ gasto, setGastoEditar }) => {
 
 Gasto.propTypes = {
   gasto: PropTypes.object.isRequired,
-  setGastoEditar: PropTypes.func.isRequired
+  setGastoEditar: PropTypes.func.isRequired,
+  eliminarGasto: PropTypes.func.isRequired
 
 }
 
