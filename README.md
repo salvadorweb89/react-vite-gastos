@@ -20,3 +20,6 @@ A simple React Vite project to manage a personal monthly budget and bills.
 - Uses React useState and useEffect Hooks to manage State and spread Ojects reactivity through application.
 - Uses (React Swipeable List)[https://github.com/marekrozmus/react-swipeable-list] to implement a swipeable list of elements.
 - Uses (React Circular Progressbar)[https://github.com/kevinsqi/react-circular-progressbar] to implement a circular progressbar.
+
+
+![image](https://github.com/salvadorweb89/react-vite-gastos/assets/9569430/2523f10d-6f1f-4e4e-ae17-a26fe434856b)
