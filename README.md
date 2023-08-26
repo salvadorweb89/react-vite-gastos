@@ -21,6 +21,6 @@ A simple React Vite project to manage a personal monthly budget and bills.
 - Uses (React Swipeable List)[https://github.com/marekrozmus/react-swipeable-list] to implement a swipeable list of elements.
 - Uses (React Circular Progressbar)[https://github.com/kevinsqi/react-circular-progressbar] to implement a circular progressbar.
 
-Demo: (https://react-gastos-salvadorweb89.netlify.app)[https://react-gastos-salvadorweb89.netlify.app]react-gastos-salvadorweb89.netlify.app
+Demo: https://react-gastos-salvadorweb89.netlify.app
 
 ![image](https://github.com/salvadorweb89/react-vite-gastos/assets/9569430/2523f10d-6f1f-4e4e-ae17-a26fe434856b)
