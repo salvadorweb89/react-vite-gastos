@@ -7,16 +7,21 @@ import IconoNuevoGasto from './img/nuevo-gasto.svg';
 
 function App() {
 
-  const [presupuesto, setPresupuesto] = useState(0);
+  const [presupuesto, setPresupuesto] = useState(
+    Number(localStorage.getItem('presupuesto') ?? 0)
+  );
   const [isValidPresupuesto, setIsValidPresupuesto] = useState(false);
 
   const [modal, setModal] = useState(false);
   const [animarModal, setAnimarModal] = useState(false);
 
-  const [gastos, setGastos] = useState([]);
+  const [gastos, setGastos] = useState(
+    localStorage.getItem('gastos') ? JSON.parse(localStorage.getItem('gastos')) : []
+  );
 
   const [gastoEditar, setGastoEditar] = useState({});
 
+  // useEffect para mostrar el modal.
   useEffect(() => {
     if(Object.keys(gastoEditar).length > 0) {
       setModal(true);
@@ -25,7 +30,27 @@ function App() {
         setAnimarModal(true);
       }, 500);
     }
-  }, [gastoEditar])
+  }, [gastoEditar]);
+
+
+  //useEffect para inicializar la interfaz si tenemos presupuesto válido en localStorage
+  useEffect(() => {
+    const presupuestoLocalStorage = Number(localStorage.getItem('presupuesto'));
+    if(presupuestoLocalStorage > 0) {
+      setIsValidPresupuesto(true);
+    }
+  }, []);
+
+  // useEffect para almacenar el presupuesto en localStorage
+  useEffect(() => {
+    localStorage.setItem('presupuesto', presupuesto ?? 0);
+  }, [presupuesto]);
+
+
+  // useEffect para almacenar los gastos en el locaStorage
+  useEffect(() => {
+    localStorage.setItem('gastos', JSON.stringify(gastos));
+  }, [gastos]);
 
 
   const handleNuevoGasto = () => {
