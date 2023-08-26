@@ -3,7 +3,13 @@ import { useState, useEffect } from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import "react-circular-progressbar/dist/styles.css";
 
-const ControlPresupuesto = ({presupuesto, gastos}) => {
+const ControlPresupuesto = ({
+  presupuesto, 
+  setPresupuesto, 
+  gastos, 
+  setGastos, 
+  setIsValidPresupuesto
+}) => {
 
   const [disponible, setDisponible] = useState(0);
   const [gastado, setGastado] = useState(0);
@@ -33,6 +39,18 @@ const ControlPresupuesto = ({presupuesto, gastos}) => {
     })
   }
 
+
+  const handleResetApp = () => {
+    const resultado = confirm(`¿Estás seguro/a de que quieres reiniciar la App? 
+    \nEsta operación eliminará el presupuesto y todos los gastos`);
+
+    if (resultado) {
+      setPresupuesto(0);
+      setIsValidPresupuesto(false);
+      setGastos([]);
+    }
+  }
+
   return (
     <div className="contenedor contenedor-presupuesto sombra dos-columnas">
       <div>
@@ -47,6 +65,9 @@ const ControlPresupuesto = ({presupuesto, gastos}) => {
         />
       </div>
       <div className="contenido-presupuesto">
+        <button className='reset-app' type='button' onClick={handleResetApp}>
+          Reiniciar App
+        </button>
         <p>
           <span>Presupuesto: </span> {formatPresupuesto(presupuesto)}
         </p>
@@ -63,7 +84,10 @@ const ControlPresupuesto = ({presupuesto, gastos}) => {
 
 ControlPresupuesto.propTypes = {
   presupuesto: PropTypes.number.isRequired,
-  gastos: PropTypes.array.isRequired
+  setPresupuesto: PropTypes.func.isRequired,
+  gastos: PropTypes.array.isRequired,
+  setGastos: PropTypes.func.isRequired,
+  setIsValidPresupuesto: PropTypes.func.isRequired
 }
 
 export default ControlPresupuesto;
