@@ -23,4 +23,5 @@ A simple React Vite project to manage a personal monthly budget and bills.
 
 Demo: https://react-gastos-salvadorweb89.netlify.app
 
-![image](https://github.com/salvadorweb89/react-vite-gastos/assets/9569430/2523f10d-6f1f-4e4e-ae17-a26fe434856b)
+![image](https://github.com/salvadorweb89/react-vite-gastos/assets/9569430/4f748658-d269-41e0-b874-c93d7c52848d)
+
